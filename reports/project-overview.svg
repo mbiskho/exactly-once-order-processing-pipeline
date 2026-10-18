@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<rect width="1200" height="760" fill="#ffffff"/>
+<text x="64.0" y="58.0" font-family="Arial,sans-serif" font-size="30" font-weight="700" fill="#0f172a" text-anchor="start">Exactly-Once Order Processing Pipeline</text>
+<text x="66.0" y="88.0" font-family="Arial,sans-serif" font-size="15" font-weight="400" fill="#64748b" text-anchor="start">Transactional outbox, idempotent consumers, and per-key ordering</text>
+<text x="1136.0" y="88.0" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#0f766e" text-anchor="end">ILLUSTRATIVE</text>
+<rect x="64" y="119" width="254" height="94" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="80.0" y="151.0" font-family="Arial,sans-serif" font-size="14" font-weight="600" fill="#64748b" text-anchor="start">Orders lost</text>
+<text x="80.0" y="188.0" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">0</text>
+<rect x="332" y="119" width="254" height="94" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="348.0" y="151.0" font-family="Arial,sans-serif" font-size="14" font-weight="600" fill="#64748b" text-anchor="start">Duplicates</text>
+<text x="348.0" y="188.0" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">0</text>
+<rect x="600" y="119" width="254" height="94" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="616.0" y="151.0" font-family="Arial,sans-serif" font-size="14" font-weight="600" fill="#64748b" text-anchor="start">Order violations</text>
+<text x="616.0" y="188.0" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">0</text>
+<rect x="868" y="119" width="254" height="94" rx="12" fill="#f8fafc" stroke="#e2e8f0"/>
+<text x="884.0" y="151.0" font-family="Arial,sans-serif" font-size="14" font-weight="600" fill="#64748b" text-anchor="start">Fault runs</text>
+<text x="884.0" y="188.0" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#0f172a" text-anchor="start">20</text>
+<text x="66.0" y="270.0" font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#0f172a" text-anchor="start">Illustrative throughput through a broker recovery event</text>
+<text x="1136.0" y="270.0" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#64748b" text-anchor="end">Orders / second</text>
+<line x1="95" y1="335.0" x2="1150" y2="335.0" stroke="#e2e8f0"/>
+<text x="85.0" y="340.0" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#64748b" text-anchor="end">8.85e+03</text>
+<line x1="95" y1="413.8" x2="1150" y2="413.8" stroke="#e2e8f0"/>
+<text x="85.0" y="418.8" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#64748b" text-anchor="end">6.4e+03</text>
+<line x1="95" y1="492.5" x2="1150" y2="492.5" stroke="#e2e8f0"/>
+<text x="85.0" y="497.5" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#64748b" text-anchor="end">3.95e+03</text>
+<line x1="95" y1="571.2" x2="1150" y2="571.2" stroke="#e2e8f0"/>
+<text x="85.0" y="576.2" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#64748b" text-anchor="end">1.5e+03</text>
+<line x1="95" y1="650.0" x2="1150" y2="650.0" stroke="#e2e8f0"/>
+<text x="85.0" y="655.0" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#64748b" text-anchor="end">-948</text>
+<polyline points="95.0,388.0 270.8,375.1 446.7,365.5 622.5,375.1 798.3,381.6 974.2,371.9 1150.0,365.5" fill="none" stroke="#2563eb" stroke-width="3" stroke-linejoin="round"/>
+<line x1="105" y1="698" x2="129" y2="698" stroke="#2563eb" stroke-width="4"/>
+<text x="137.0" y="703.0" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#475569" text-anchor="start">Normal traffic</text>
+<polyline points="95.0,391.2 270.8,619.5 446.7,561.6 622.5,484.5 798.3,410.5 974.2,378.3 1150.0,368.7" fill="none" stroke="#0f766e" stroke-width="3" stroke-linejoin="round"/>
+<line x1="350" y1="698" x2="374" y2="698" stroke="#0f766e" stroke-width="4"/>
+<text x="382.0" y="703.0" font-family="Arial,sans-serif" font-size="13" font-weight="400" fill="#475569" text-anchor="start">Broker recovering</text>
+<line x1="95" y1="335" x2="95" y2="650" stroke="#94a3b8"/>
+<line x1="95" y1="650" x2="1150" y2="650" stroke="#94a3b8"/>
+<line x1="64" y1="734" x2="1136" y2="734" stroke="#e2e8f0"/>
+<text x="65.0" y="756.0" font-family="Arial,sans-serif" font-size="12" font-weight="400" fill="#64748b" text-anchor="start">Synthetic / illustrative values for portfolio visualization; not production measurements.</text>
+</svg>

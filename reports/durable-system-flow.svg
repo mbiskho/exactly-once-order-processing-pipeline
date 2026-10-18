@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="760" viewBox="0 0 1280 760">
+  <rect width="1280" height="760" fill="#f5f3ee"/>
+  <text x="56" y="58" fill="#182622" font-family="Arial,sans-serif" font-size="30" font-weight="700">Durable order processing</text>
+  <text x="58" y="88" fill="#69766f" font-family="Arial,sans-serif" font-size="14">PostgreSQL transactions + Kafka-compatible delivery + idempotent effects</text>
+  <rect x="56" y="121" width="1168" height="36" rx="5" fill="#f4e8df"/>
+  <text x="72" y="144" fill="#98472d" font-family="Arial,sans-serif" font-size="12" font-weight="700">EXACTLY-ONCE BUSINESS EFFECTS; BROKER DELIVERY IS AT-LEAST-ONCE</text>
+  <g font-family="Arial,sans-serif">
+    <g fill="#fffefa" stroke="#d8d9d1">
+      <rect x="56" y="202" width="200" height="130" rx="8"/>
+      <rect x="292" y="202" width="200" height="130" rx="8"/>
+      <rect x="528" y="202" width="200" height="130" rx="8"/>
+      <rect x="764" y="202" width="200" height="130" rx="8"/>
+      <rect x="1000" y="202" width="224" height="130" rx="8"/>
+    </g>
+    <g fill="#145943" font-family="monospace" font-size="11" font-weight="700">
+      <text x="72" y="229">01 · COMMAND</text><text x="308" y="229">02 · ATOMIC WRITE</text>
+      <text x="544" y="229">03 · OUTBOX RELAY</text><text x="780" y="229">04 · CONSUMER TX</text>
+      <text x="1016" y="229">05 · CONFIRM</text>
+    </g>
+    <g fill="#182622" font-size="17" font-weight="700">
+      <text x="72" y="265">Order API</text><text x="308" y="265">PostgreSQL</text>
+      <text x="544" y="265">Redpanda / Kafka</text><text x="780" y="265">PostgreSQL</text>
+      <text x="1016" y="265">Kafka offset</text>
+    </g>
+    <g fill="#69766f" font-size="12">
+      <text x="72" y="290">Idempotency key</text><text x="308" y="290">orders + outbox</text>
+      <text x="544" y="290">Key = partition key</text><text x="780" y="290">dedup + effect</text>
+      <text x="1016" y="290">after DB commit</text>
+      <text x="72" y="311">Client retry-safe</text><text x="308" y="311">one transaction</text>
+      <text x="544" y="311">ordered per key</text><text x="780" y="311">sequence gate</text>
+      <text x="1016" y="311">redelivery-safe</text>
+    </g>
+  </g>
+  <g stroke="#145943" stroke-width="2" fill="none">
+    <path d="M262 267h24m-8-6 8 6-8 6"/><path d="M498 267h24m-8-6 8 6-8 6"/>
+    <path d="M734 267h24m-8-6 8 6-8 6"/><path d="M970 267h24m-8-6 8 6-8 6"/>
+  </g>
+  <rect x="292" y="355" width="436" height="47" rx="6" fill="#e4eee8"/>
+  <text x="310" y="384" fill="#145943" font-family="Arial,sans-serif" font-size="12" font-weight="600">Atomic producer transaction: allocate key sequence + insert order + insert outbox</text>
+  <rect x="764" y="355" width="460" height="47" rx="6" fill="#e8edf4"/>
+  <text x="782" y="384" fill="#385a8d" font-family="Arial,sans-serif" font-size="12" font-weight="600">Atomic consumer transaction: dedup record + order effect + advance key cursor</text>
+  <text x="56" y="451" fill="#182622" font-family="Arial,sans-serif" font-size="20" font-weight="700">Recovery paths</text>
+  <g font-family="Arial,sans-serif">
+    <rect x="56" y="472" width="368" height="150" rx="8" fill="#fffefa" stroke="#d8d9d1"/>
+    <rect x="456" y="472" width="368" height="150" rx="8" fill="#fffefa" stroke="#d8d9d1"/>
+    <rect x="856" y="472" width="368" height="150" rx="8" fill="#fffefa" stroke="#d8d9d1"/>
+    <text x="76" y="505" fill="#ad512e" font-size="12" font-weight="700">PUBLISH ACKNOWLEDGEMENT LOST</text>
+    <text x="76" y="535" fill="#182622" font-size="13">Relay retries the durable outbox row.</text>
+    <text x="76" y="558" fill="#69766f" font-size="12">Kafka may deliver twice; unique event key</text>
+    <text x="76" y="578" fill="#69766f" font-size="12">prevents a second business effect.</text>
+    <text x="476" y="505" fill="#ad512e" font-size="12" font-weight="700">CONSUMER CRASH AFTER COMMIT</text>
+    <text x="476" y="535" fill="#182622" font-size="13">Offset remains uncommitted.</text>
+    <text x="476" y="558" fill="#69766f" font-size="12">Redelivery hits the dedup constraint and</text>
+    <text x="476" y="578" fill="#69766f" font-size="12">is acknowledged without reapplying effects.</text>
+    <text x="876" y="505" fill="#ad512e" font-size="12" font-weight="700">POISON EVENT · QUARANTINE + REPLAY</text>
+    <text x="876" y="535" fill="#182622" font-size="13">Keep the key sequence blocked for review.</text>
+    <text x="876" y="558" fill="#69766f" font-size="12">After repair, replay through the outbox;</text>
+    <text x="876" y="578" fill="#69766f" font-size="12">the same sequence gate remains enforced.</text>
+  </g>
+  <rect x="56" y="653" width="1168" height="55" rx="6" fill="#182622"/>
+  <text x="76" y="678" fill="#ffffff" font-family="Arial,sans-serif" font-size="13" font-weight="700">VERIFY AFTER EACH FAULT</text>
+  <text x="76" y="698" fill="#d7e2db" font-family="Arial,sans-serif" font-size="12">outbox coverage · one effect per event · dedup/effect parity · contiguous order per partition key · recovered backlog</text>
+</svg>
