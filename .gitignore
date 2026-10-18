@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+# Node
+node_modules/
+.next/
+dist/
+# Go / C++ / Terraform
+build/
+build-*/
+.terraform/
+*.tfstate
+*.tfstate.*
+# Local
+.env
+.DS_Store
